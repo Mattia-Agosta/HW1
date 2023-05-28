@@ -1,0 +1,339 @@
+/* Importo un font da google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@600&display=swap'); 
+
+html {
+    background: url(images/top10_bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    scroll-behavior: smooth;
+}
+
+/* Cambio il colore del testo evidenziato */
+::selection {
+    background: burlywood;
+}
+
+body {
+    font-size: 120%;
+    font-family: 'Mulish', sans-serif;
+    margin: 0px;
+    padding-bottom: 30px;
+} 
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px 25px;
+    align-items: center;
+    color: white;
+    border-bottom: 2px solid darkgoldenrod;
+    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#title, #buttons {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+#title img {
+    width: 100px;
+    height: 100px;
+}
+
+#title h1 {
+    font-family: "Changa", sans-serif;
+}
+
+#buttons button {
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: background-color 0.5s, transform 0.1s;
+    font-size: 110%;
+}
+a img {
+    padding: 5px 5px;
+    border-radius: 25px;
+    transition: background-color 0.5s, transform 0.1s;
+}
+
+#profilo {
+    border: 2px solid darkslategray;
+    background-color: rgb(118, 166, 255);
+    box-shadow: 0px 5px 0px 0px rgb(71, 102, 160)
+}
+
+#logout {
+    border: 2px solid rgb(90, 45, 45);
+    background-color: salmon;
+    box-shadow: 0px 5px 0px 0px rgb(168, 94, 86);
+}
+
+#profilo:hover {
+    background-color:burlywood;
+    cursor: pointer;
+}
+
+#logout:hover {
+    background-color:rgb(252, 96, 57);
+    cursor: pointer;
+}
+  
+#buttons button:active, a img:active {
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px 0px #a29bfe;
+}
+
+#buttons a img {
+    display: none;
+}
+
+main {
+    width: 80%;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    margin: 100px auto;
+    padding: 20px 20px;
+    border-radius: 40px;
+    border: 3px solid goldenrod;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px 0px;
+}
+
+#waiting {
+    width: 30%;
+    height: 30%;
+}
+
+.game {
+    width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border-radius: 40px;
+    border: 3px solid darkslategray;
+    gap: 5px;
+}
+
+.noGames {
+    width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(230, 98, 91, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 40px;
+    border: 3px solid rgb(116, 0, 0);
+    gap: 5px;
+    position: relative;
+    color: rgb(116, 0, 0);
+}
+
+.noGames p {
+    text-align: center;
+}
+
+.mainImage {
+    width: 250px;
+    margin: 10px 0px;
+}
+
+.likeButtons {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    padding: 5px;
+    top: 25px;
+    left: 209px;
+}
+
+.likeButtons:hover {
+    cursor: pointer;
+}
+
+.titles, .genres, .dates, .platforms {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.gamedata p {
+    margin: 0px;
+}
+
+.gamedata span {
+    color: rgb(187, 9, 9);
+}
+
+.gamedata {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+.noData {
+    font-style: italic;
+}
+
+.id {
+    display: none;
+}
+
+.ranking {
+    /*position: absolute;
+    top: -20px; */
+    height: 160px;
+    margin: -5px;
+}
+
+#links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-evenly;
+    gap: 15px;
+}
+
+#links div {
+    margin: 0px auto;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid gray;
+    width: fit-content;
+    border-radius: 20px;
+}
+
+#links div a {
+    width: fit-content;
+    color: black;
+}
+
+#links div a:visited {
+    color: black;
+}
+
+/* Definisco le proprietà per mobile */
+
+@media(max-width: 600px) {
+    html {
+        background-image: url(images/top10_bg_mobile.jpg);
+    }
+    body {
+        font-size: 90%;
+    }
+    header {
+        padding: 10px 10px;
+    }
+    #title, #buttons {
+        padding: 5px 10px;
+        gap: 25px;
+    }
+    #title h1 {
+        display: none;
+    }
+    #title img {
+        width: 75px;
+        height: 75px;
+    }
+    #buttons {
+        gap: 20px;
+    }
+    button {
+        display: none;
+    }
+    main {
+        width: 90%;
+        margin: 60px auto;
+    }
+    #buttons a img {
+        display: inline;
+    }
+}
+
+@media(max-width: 450px) {
+    h3 {
+        font-size: 100%;
+    }
+    .noGames img {
+        width: 125px;
+    }
+    #container {
+        margin: 0px;
+    }
+}
+
+@media(max-width: 350px) {
+    html {
+        background-image: url(images/top10_bg_mobile.jpg);
+    }
+    body {
+        font-size: 80%;
+    }
+    header {
+        padding: 10px 10px;
+    }
+    #title h1 {
+        display: none;
+    }
+    #buttons {
+        padding: 0px;
+    }
+    button {
+        font-size: 90%;
+        padding: 0px;
+    }
+    main {
+        margin: 45px auto 60px auto;
+    }
+    .game {
+        width: 250px;
+    }
+    .mainImage {
+        width: 200px;
+    }
+    .likeButtons {
+        left: 175px;
+        width: 32px;
+        height: 32px;
+    }
+    .likeButtons img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .ranking {
+        height: 128px;
+    }
+}
