@@ -49,6 +49,7 @@
                     <input type="submit" value="Cerca" id = "searchSubmit">
             </form>
             <div id = "container"></div>
+            <div id = "pageContainer"></div>
         </main>
         <div id ="links">
             <div> 

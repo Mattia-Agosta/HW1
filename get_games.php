@@ -25,7 +25,12 @@
     $key = "5a51c4d19b7e48ffb31b158715a0d94c";
     if(isset($_GET["q"])) {
         //Se ho passato il parametro q, sto facendo una ricerca per titolo
-        $url = "https://api.rawg.io/api/games?key=" . $key . "&search=" . $_GET["q"] . "&ordering=-rating&search_precise=yes";
+        //Con un ciclo, restituisco la pagina corrispondente
+        $i = 1;
+        while ($i < $_GET["page"]) {
+            $i++;
+        }
+        $url = "https://api.rawg.io/api/games?key=" . $key . "&search=" . $_GET["q"] . "&ordering=-rating&search_precise=yes&page_size=9&page=" . $i;
         curl_setopt($curl, CURLOPT_URL, $url);
         $res = curl_exec($curl);
         curl_close($curl);

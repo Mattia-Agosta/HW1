@@ -29,8 +29,8 @@
     mysqli_close($conn);
     //Dopo aver ottenuto tutti i giochi, prendo solo quelli della pagina corrente
     $page = $_GET["page"];
-    $inizio = ($page - 1) * 10;
-    $games = array_slice($games, $inizio, 10);
+    $inizio = ($page - 1) * 9;
+    $games = array_slice($games, $inizio, 9);
     echo json_encode($games);
 
 ?>

@@ -50,7 +50,7 @@ function onLikedGamesJson(json) {
         container.appendChild(box);
     }
     let moreGames = true;
-    if (n < 10) {
+    if (n < 9) {
         moreGames = false;
     }
     //Itero tra i giochi e costruisco per ognuno il proprio box

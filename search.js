@@ -1,3 +1,4 @@
+let page = 1;
 /* Creo la funzione che si occuperà di fare la fetch a getGames.php e
    cercare i giochi. Entrerà in funzione in due casi: 
    - All'apertura della pagina
@@ -8,7 +9,7 @@ function searchGames() {
     //viene chiamata ad ogni apertura della pagina
     if (search.value) {
         //preparo la fetch
-        const search_url = "get_games.php?q=" + encodeURIComponent(search.value) ;
+        const search_url = "get_games.php?q=" + encodeURIComponent(search.value) + "&page=" + page;
         console.log(search_url);
         fetch(search_url).then(onResponse, onError).then(onGamesJson);
     }
@@ -18,7 +19,6 @@ function submitGames(event) {
     //Evito il ricaricamento della pagina
     event.preventDefault();
     const container = document.querySelector("#container");
-
     //Se è stato fatto il submit senza digitare un parametro, visualizzo errore
     const search = document.querySelector("#searchBar")
     if (!search.value) {
@@ -59,13 +59,14 @@ function onGamesJson (json) {
     const container = document.querySelector("#container");
     //Svuoto il container
     container.innerHTML = "";
+    pageContainer.innerHTML = "";
     //Itero tra gli elementi e li aggiungo alla pagina, ognuno nel suo box personale
     let items = 9;
-    if (json.count < 9) {
-        items = json.count;
+    if (json.results.length < 9) {
+        items = json.results.length;
     }
     //Se non è stato trovato nessun gioco, visualizzo un messaggio di errore
-    if (items === 0) {
+    if (!items) {
         const error = document.createElement("div");
         error.classList.add("error");
         const img = document.createElement("img");
@@ -77,6 +78,10 @@ function onGamesJson (json) {
         container.appendChild (error);
         return;
     } 
+    let moreGames = true;
+    if(!json.next) {
+        moreGames = false;
+    }
     for (let i = 0; i < items; i++) {
         const game = json.results[i];
         const box = document.createElement("div");
@@ -174,6 +179,32 @@ function onGamesJson (json) {
         const search_url = "fetch_game.php?game_id=" + game.id+ "&game_number=" + i;
         fetch(search_url).then(onResponse, onError).then(onControlJson);
     }
+    //Dopo che ho aggiunto i giochi, aggiungo i pulsanti per cambiare pagina
+    if (page === 1 && !moreGames) {
+        return;
+    }
+    const b1 = document.createElement("div");
+    b1.setAttribute("id", "backPage");
+    const img1 = document.createElement("img");
+    img1.src = "images/logos/page_back.png";
+    b1.appendChild(img1);
+    pageContainer.appendChild(b1);
+    const b2 = document.createElement("div");
+    b2.setAttribute("id", "nextPage");    
+    const img2 = document.createElement("img");
+    img2.src = "images/logos/page_next.png";
+    b2.appendChild(img2);
+    pageContainer.appendChild(b2);
+    if (page === 1) {
+        img1.src = "images/logos/no_page.png";
+    } else {
+        backPage.addEventListener("click", pageBack);
+    }
+    if (!moreGames) {
+        img2.src = "images/logos/no_page.png";
+    } else {
+        nextPage.addEventListener("click", pageNext);
+    }
 }
 
 //Scrivo la funzione che gestirà il meccanismo di aggiunta/rimozione dai preferiti
@@ -262,5 +293,20 @@ function onControlJson(json) {
         box.appendChild(div);
     }  
 }
+
+//Creo le funzioni che gestiscono il cambiamento di pagina
+function pageBack () {
+    nextPage.classList.remove("notUsable");
+    //Se posso andare indietro, lo faccio
+    page--;
+    searchGames();
+}
+
+function pageNext () {
+    backPage.classList.remove("notUsable");
+    page++;
+    searchGames();
+}
+
 searchGames();
 document.querySelector("form").addEventListener("submit", submitGames);
